@@ -1,0 +1,37 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="~/Content/js/App.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="page-header">
+            <a class="btn btn-link btn-sm" href="/Home/Index" role="button">
+                <h1>Online Mark</h1>
+            </a>
+            <div class="btn-group btn-group-lg col-md-offset-8" >
+                <a class="btn btn-default btn-success" href="/Home/Index">Sign In</a>
+                <a class="btn btn-default btn-warning" href="/Account/Register">Sign Up</a>
+            </div>
+        </div>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+
+            </div>
+        </nav>
+        @RenderBody()
+    </div>
+    <br />
+    <br />
+    <div class="modal-footer">
+
+    </div>
+</body>
+</html>

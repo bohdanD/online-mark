@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div> 
+        Hello funcking world!!!
+        @foreach(var s in ViewBag.Students)
+        {
+            <div>
+                <p>@s.Name</p>
+                <p>@s.Group</p>
+                @foreach(var c in s.Courses)
+                {
+                    <div>
+                        <p>@c.Name</p>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+

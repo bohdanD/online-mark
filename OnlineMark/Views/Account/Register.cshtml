@@ -1,0 +1,27 @@
+﻿@model OnlineMark.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert ">
+    <h2 class="modal-header">Реєстрація</h2>
+</div>
+
+<div class="checkbox col-lg-9">
+    <label><input id="show" type="checkbox" onchange="onShowClick()" checked="checked" /> As a student</label>
+</div>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "col-lg-9" }))
+{
+    <fieldset>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control"})
+        </div>
+
+
+    </fieldset>
+}
+
