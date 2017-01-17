@@ -88,6 +88,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -141,15 +145,16 @@
     <Content Include="App_Data\Marksstore_log.ldf">
       <DependentUpon>Marksstore.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\StoreDB.mdf" />
+    <Content Include="App_Data\StoreDB_log.ldf">
+      <DependentUpon>StoreDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\js\App.js" />
-    <Content Include="Content\js\bootstrap.js" />
-    <Content Include="Content\js\bootstrap.min.js" />
-    <Content Include="Content\js\npm.js" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
@@ -160,7 +165,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,15 +179,27 @@
     <Compile Include="Migrations\201611201458198_dell_pass.Designer.cs">
       <DependentUpon>201611201458198_dell_pass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612121454409_CourseAddFields.cs" />
+    <Compile Include="Migrations\201612121454409_CourseAddFields.Designer.cs">
+      <DependentUpon>201612121454409_CourseAddFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121520488_CourseAddFields2.cs" />
+    <Compile Include="Migrations\201612121520488_CourseAddFields2.Designer.cs">
+      <DependentUpon>201612121520488_CourseAddFields2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AddCourseModel.cs" />
+    <Compile Include="Models\AddMarkModel.cs" />
     <Compile Include="Models\AuthorizationModels.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\JsonFilter.cs" />
     <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="Models\Mark.cs" />
     <Compile Include="Models\MarksContext.cs" />
     <Compile Include="Models\MarksDbInitializer.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\SaveMarkVM.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\UserDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -206,6 +225,14 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\Add.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\ShowCourses.cshtml" />
+    <Content Include="Views\Course\ShowCourse.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\ShowMarks.cshtml" />
+    <Content Include="Views\Course\ChangeCourse.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -220,6 +247,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611201458198_dell_pass.resx">
       <DependentUpon>201611201458198_dell_pass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121454409_CourseAddFields.resx">
+      <DependentUpon>201612121454409_CourseAddFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121520488_CourseAddFields2.resx">
+      <DependentUpon>201612121520488_CourseAddFields2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

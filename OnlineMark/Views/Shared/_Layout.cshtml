@@ -16,14 +16,34 @@
             <a class="btn btn-link btn-sm" href="/Home/Index" role="button">
                 <h1>Online Mark</h1>
             </a>
-            <div class="btn-group btn-group-lg col-md-offset-8" >
-                <a class="btn btn-default btn-success" href="/Home/Index">Sign In</a>
-                <a class="btn btn-default btn-warning" href="/Account/Register">Sign Up</a>
-            </div>
+            <div class="btn-group btn-group-lg col-md-offset-8">
+                @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <a class="btn btn-default btn-success" href="/Account/Index">Вхід</a>
+                    <a class="btn btn-default btn-warning" href="/Account/Register">Реєстрація</a>
+                }
+                else
+                {
+                    <a class="btn btn-default btn-success" href="/Account/LogOff">Вийти</a>
+                }
+
+            </div>    
         </div>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
+                     <ul class="nav navbar-nav">
+                         <li><a href="/Home/Index">Домашня сторінка</a></li>
+                         @if (ViewContext.HttpContext.User.IsInRole("Lecturer"))
+                         {
+                            <li><a href="~/Course/Index">Додати курс</a></li>
+                            <li><a href="~/Course/ShowCourses">Переглянути курси</a></li>
+                         }
+                         @if (ViewContext.HttpContext.User.IsInRole("Student"))
+                         {
+                             <li><a href="~/Student/Index">Переглянути предмети</a></li>
+                         }
 
+                     </ul>
             </div>
         </nav>
         @RenderBody()

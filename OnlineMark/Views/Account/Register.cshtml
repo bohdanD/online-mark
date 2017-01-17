@@ -4,24 +4,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="alert ">
-    <h2 class="modal-header">Реєстрація</h2>
+<div class="alert">
+    <h2 class="modal-header ">Реєстрація</h2>
 </div>
 
-<div class="checkbox col-lg-9">
-    <label><input id="show" type="checkbox" onchange="onShowClick()" checked="checked" /> As a student</label>
-</div>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "col-lg-9" }))
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "col-lg-4 col-lg-offset-4" }))
 {
+    @Html.ValidationSummary(true);
+    <div class="form-group">
+        <label><input id="show" type="checkbox" onchange="onShowClick()" checked="checked" /> Як студент</label>
+    </div>
     <fieldset>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name)
             @Html.TextBoxFor(model => model.Name, new { @class = "form-control"})
         </div>
-
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.Login)
+            @Html.TextBoxFor(model => model.Login, new { @class = "form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control"})
+        </div>
+        <div id="group" class="form-group">
+            @Html.LabelFor(model => model.Group)
+            @Html.TextBoxFor(model => model.Group, new { @class = "form-control"})
+        </div>
+        
+        <button type="submit" class="btn btn-success btn-lg">Зареєструватися</button>
     </fieldset>
+
 }
 

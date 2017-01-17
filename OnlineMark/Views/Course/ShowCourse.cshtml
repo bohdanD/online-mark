@@ -1,0 +1,84 @@
+﻿@model OnlineMark.Models.AddMarkModel
+@using OnlineMark.Models
+@{
+    ViewBag.Title = "ShowCourse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert">
+    <h2 class="modal-header">@(((Course)ViewData["course"]).Name) </h2>
+</div>
+
+
+<div class="container">
+    <div style="overflow :auto; margin-bottom : 10px;">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Студент</th>
+                    @if (ViewData["mark1"] as List<Mark> != null)
+                    {
+                        foreach (var m in ViewData["mark1"] as List<Mark>)
+                        {
+                            <th>@m.Date.ToString().Split(' ')[0]</th>
+                            <th>Опис</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewData["students"] as List<Student> != null)
+                {
+                    foreach (var item in ViewData["students"] as List<Student>)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            @if (item.Marks != null)
+                            {
+                                foreach (var m in item.Marks)
+                                {
+                                    <td>@Html.TextBoxFor(model => m.Value, new { Id = "Value_" + m.Id.ToString() })</td>
+                                    <td>@Html.TextBoxFor(model => m.Description, new { Id = "Description_" + m.Id.ToString() })</td>
+                                }
+                            }
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td><p>Занять не знайдено. Ви можете додати заняття <a href="#addMark">натиснувши тут </a></p></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+        <input class="btn btn-success" type="button" value="Підтвердити зміни" onclick="saveChanges()" />
+    
+
+</div>
+
+<div id="addMark" class="container">
+    <h3 class="modal-header">Додати заняття</h3>
+    @using (@Html.BeginForm("AddMark", "Course", FormMethod.Post, new { @class = "col-lg-6 col-lg-offset-3" }))
+    {
+        
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            @Html.HiddenFor(model => model.returnUrl, new { Value = Request.Url.OriginalString})
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description)
+                @Html.TextBoxFor(model => model.Description, new { @class = "form-control"})
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date)
+                @Html.TextBoxFor(model => model.Date, new { @class = "form-control", type = "time"})
+            </div>
+   
+            <input type="submit" class="btn btn-success" />
+        </fieldset> 
+    }
+</div>
+

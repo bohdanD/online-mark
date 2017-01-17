@@ -1,0 +1,29 @@
+﻿@using OnlineMark.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert">
+    <h2 class="modal-header">Мої курси</h2>
+</div>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Назва курсу</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in ViewData["courses"] as List<Course>)
+            {
+                <tr>
+                    <td>@i.Name</td>
+                    <td><a href="~/Student/ShowMarks?id=@i.Id">Перейти до курсу</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

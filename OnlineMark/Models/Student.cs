@@ -27,6 +27,15 @@ namespace OnlineMark.Models
         public Student()
         {
             Courses = new HashSet<Course>();
+            if(Id != 0)
+            {
+                using (MarksContext db = new MarksContext())
+                {
+                    Marks = db.Marks.Where(i => i.StudentId == Id).AsEnumerable();
+
+                 }
+            }
+               
         }
     }
 }

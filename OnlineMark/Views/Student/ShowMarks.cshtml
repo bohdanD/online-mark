@@ -1,0 +1,39 @@
+﻿@using OnlineMark.Models
+@{
+    ViewBag.Title = "ShowMarks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert">
+    <h2 class="modal-header">Оцінки для: @ViewBag.CourseName </h2>
+</div>
+
+<div class="container">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                @if (ViewData["marks"] as List<Mark> != null)
+                {
+                    foreach (var m in ViewData["marks"] as List<Mark>)
+                    {
+                        <th>@m.Date.ToString().Split(' ')[0]</th>
+                        <th>Опис</th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @if (ViewData["marks"] as List<Mark> != null)
+                {
+                    foreach (var m in ViewData["marks"] as List<Mark>)
+                    {
+                        <td>@m.Value</td>
+                        <td>@m.Description</td>
+                    }
+                }
+            </tr>
+
+        </tbody>
+    </table>
+</div>

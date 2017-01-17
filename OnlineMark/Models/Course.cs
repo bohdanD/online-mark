@@ -10,11 +10,21 @@ namespace OnlineMark.Models
     public class Course
     {
         [Key]
-        [ScaffoldColumn(false)]
+        [Display(AutoGenerateField = false)]
         public int Id { get; set; }
         [Required]
         [Display(Name = "Назва")]
         public string Name { get; set; }
+
+        [Display(Name = "Мета викладання предмету")]
+        public string Aim { get; set; }
+
+        [Display(Name = "Програма курсу")]
+        public string ProgramOfCourse { get; set; }
+
+        [Display(Name = "Теми занять")]
+        public string Themes { get; set; }
+
         [Required]
         [HiddenInput(DisplayValue = false)]
         public int LecturerId { get; set; }

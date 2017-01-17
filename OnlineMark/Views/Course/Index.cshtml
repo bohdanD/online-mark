@@ -1,0 +1,41 @@
+﻿@model OnlineMark.Models.AddCourseModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert">
+    <h2 class="modal-header">Додати предмет</h2>
+</div>
+
+@using(Html.BeginForm("Add", "Course", FormMethod.Post, new { @class = "col-lg-6 col-lg-offset-3" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control"})
+        </div>
+        <div class="form-group">
+            <label>Введіть назву академічної групи</label>
+            @Html.TextBoxFor(model => model.SelectedGroup, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Aim)
+            @Html.TextAreaFor(model => model.Aim, new { @class = "form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProgramOfCourse)
+            @Html.TextAreaFor(model => model.ProgramOfCourse, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Themes)
+            @Html.TextAreaFor(model => model.Themes, new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-success btn-lg">Додати</button>
+    </fieldset>
+}
+
+
+

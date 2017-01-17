@@ -82,7 +82,7 @@ namespace OnlineMark.Providers
                     return null;
                 }
             }
-            return null;
+            return membershipUser;
         }
 
 

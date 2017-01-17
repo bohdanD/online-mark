@@ -17,6 +17,7 @@ namespace OnlineMark.Controllers
         {
             List<Student> list = await db.Students.ToListAsync();
             ViewBag.Students = list;
+
             return View();
         }
 

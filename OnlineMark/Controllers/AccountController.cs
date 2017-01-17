@@ -15,8 +15,8 @@ namespace OnlineMark.Controllers
         // GET: Account
         public ActionResult Index()
         {
-            return View();
-        }
+            return View("Login");
+        } 
         [HttpPost]
         public ActionResult Login(LogOnModel model, string returnUrl)
         {
@@ -45,7 +45,7 @@ namespace OnlineMark.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Account");
         }
 
         public ActionResult Register()

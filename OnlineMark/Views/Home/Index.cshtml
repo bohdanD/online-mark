@@ -4,20 +4,19 @@
 }
 
 
-    <div> 
-        Hello funcking world!!!
-        @foreach(var s in ViewBag.Students)
-        {
-            <div>
-                <p>@s.Name</p>
-                <p>@s.Group</p>
-                @foreach(var c in s.Courses)
-                {
-                    <div>
-                        <p>@c.Name</p>
-                    </div>
-                }
-            </div>
-        }
+    <div class="jumbotron"> 
+    @if (!ViewContext.HttpContext.User.Identity.IsAuthenticated)
+    {
+        <p>
+            Вас вітає онлайн журнал. Для використання системи зареєструйтеся або увійдіть.
+        </p>
+    }
+    else
+    {
+        <p>
+            Ви увійшли як @ViewContext.HttpContext.User.Identity.Name
+        </p>
+    }
+
     </div>
 
